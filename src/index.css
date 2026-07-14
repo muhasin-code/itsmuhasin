@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Theme color mapping */
+  --color-brand-bg: var(--bg);
+  --color-brand-sec-bg: var(--sec-bg);
+  --color-brand-card: var(--card);
+  --color-brand-border: var(--border);
+  --color-brand-text: var(--text);
+  --color-brand-sec-text: var(--sec-text);
+  --color-brand-muted: var(--muted);
+
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-float: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Global scrollbar and baseline styles */
+:root {
+  /* Dark-first Theme (default) */
+  --bg: #050505;
+  --sec-bg: #0B0B0B;
+  --card: #111111;
+  --border: rgba(255, 255, 255, 0.08);
+  --text: #FFFFFF;
+  --sec-text: #B5B5B5;
+  --muted: #6D6D6D;
+
+  scroll-behavior: smooth;
+}
+
+:root.light {
+  /* Premium Light Theme */
+  --bg: #FAF9F6; /* Warm alabaster */
+  --sec-bg: #FFFFFF;
+  --card: #F3F2EE;
+  --border: rgba(0, 0, 0, 0.08);
+  --text: #0C0C0C;
+  --sec-text: #5A5A5A;
+  --muted: #8E8E8E;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+}
+
+/* Custom Selection style */
+::selection {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: var(--text);
+}
+
+:root.light ::selection {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--card);
+  border-radius: 4px;
+  border: 2px solid var(--bg);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+
+/* Lenis smooth scrolling helper classes */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overflow: clip;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
