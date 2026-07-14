@@ -7,12 +7,18 @@ export const LINKEDIN_URL = "https://www.linkedin.com/in/muhasin-code";
 export const UPWORK_URL = "https://www.upwork.com/freelancers/~01716acc78c5c3ab17?mp_source=share"; 
 export const EMAIL_ADDRESS = "muhasin.code@gmail.com";
 
-// Image Paths
-export const PORTRAIT_IMAGE = "/profile-illustration.png";
-export const PAPERLENS_IMAGE = "/src/assets/images/paperlens_preview_1784010042683.jpg";
-export const CHURNGUARD_IMAGE = "/src/assets/images/churnguard_preview_1784010057128.jpg";
-export const BERGIE_IMAGE = "/src/assets/images/bergie_preview_1784010068636.jpg";
-export const ROBOSTOCK_IMAGE = "/src/assets/images/robostock_preview_1784010081249.jpg";
+// Image Imports (Vite processes these for production)
+import portraitImg from "./assets/images/profile-illustration.png";
+import paperlensImg from "./assets/images/paperlens_preview_1784010042683.jpg";
+import churnguardImg from "./assets/images/churnguard_preview_1784010057128.jpg";
+import bergieImg from "./assets/images/bergie_preview_1784010068636.jpg";
+import robostockImg from "./assets/images/robostock_preview_1784010081249.jpg";
+
+export const PORTRAIT_IMAGE = portraitImg;
+export const PAPERLENS_IMAGE = paperlensImg;
+export const CHURNGUARD_IMAGE = churnguardImg;
+export const BERGIE_IMAGE = bergieImg;
+export const ROBOSTOCK_IMAGE = robostockImg;
 
 export const PROJECTS: Project[] = [
   {
