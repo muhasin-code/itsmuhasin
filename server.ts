@@ -124,20 +124,60 @@ app.post("/api/gemini/chat", async (req, res) => {
   }
 });
 
-app.post("/api/contact", (req, res) => {
+app.post("/api/contact", async (req, res) => {
   try {
     const { name, email, subject, message } = req.body;
-    if (!name || !email || !message) {
+    if (
+      typeof name !== "string" ||
+      typeof email !== "string" ||
+      typeof message !== "string" ||
+      !name.trim() ||
+      !email.trim() ||
+      !message.trim() ||
+      name.length > 120 ||
+      email.length > 254 ||
+      message.length > 10000 ||
+      (subject !== undefined && (typeof subject !== "string" || subject.length > 200))
+    ) {
       return res.status(400).json({ error: "Required fields are missing." });
     }
 
-    // In a production server, this could send an email via SendGrid, save to Firestore, etc.
-    // For this app, we will return a highly personalized success message
+    const apiKey = process.env.RESEND_API_KEY;
+    const from = process.env.CONTACT_FROM_EMAIL;
+    if (!apiKey || !from) {
+      console.error("Contact email is not configured. Set RESEND_API_KEY and CONTACT_FROM_EMAIL.");
+      return res.status(503).json({ error: "Email delivery is not configured. Please try again later." });
+    }
+
+    const recipient = process.env.CONTACT_EMAIL || "muhasin.code@gmail.com";
+    const inquirySubject = subject?.trim() || "General Inquiry";
+    const emailResponse = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from,
+        to: [recipient],
+        reply_to: email.trim(),
+        subject: `Portfolio inquiry: ${inquirySubject}`,
+        text: `Name: ${name.trim()}\nEmail: ${email.trim()}\nSubject: ${inquirySubject}\n\n${message.trim()}`,
+      }),
+    });
+
+    if (!emailResponse.ok) {
+      const providerError = await emailResponse.text();
+      console.error("Contact email provider error:", emailResponse.status, providerError);
+      return res.status(502).json({ error: "Your message could not be delivered. Please try again later." });
+    }
+
     res.json({
       success: true,
-      message: `Thank you, ${name}! Your inquiry has been received. Muhasin (or his AI counterpart) will review your message about "${subject || 'General Inquiry'}" and get back to you at ${email} shortly.`
+      message: `Thank you, ${name.trim()}! Your inquiry has been sent. Muhasin will get back to you at ${email.trim()} shortly.`
     });
   } catch (error: any) {
+    console.error("Contact email delivery error:", error);
     res.status(500).json({ error: "Failed to process message." });
   }
 });

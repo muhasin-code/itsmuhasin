@@ -173,9 +173,14 @@ GEMINI_API_KEY=your_gemini_api_key_here
 
 # Production URL (set automatically on Render/Fly.io)
 APP_URL=http://localhost:3000
+
+# Contact form email delivery (Resend)
+RESEND_API_KEY=your_resend_api_key
+CONTACT_FROM_EMAIL=Portfolio <contact@your-verified-domain.com>
+CONTACT_EMAIL=muhasin.code@gmail.com
 ```
 
-> **Note**: The AI Assistant (`/api/gemini/chat`) requires `GEMINI_API_KEY`. All other features work without it.
+> **Note**: The AI Assistant (`/api/gemini/chat`) requires `GEMINI_API_KEY`. The contact form requires a Resend API key and a sender address on a domain verified with Resend. Set these variables in your deployment environment as well.
 
 ### Development
 
@@ -240,6 +245,8 @@ Chat with the AI assistant.
 ### `POST /api/contact`
 
 Submit contact form.
+
+The server sends the inquiry to `CONTACT_EMAIL` (defaults to `muhasin.code@gmail.com`) through Resend. The sender must be configured using `CONTACT_FROM_EMAIL` and verified with Resend; `RESEND_API_KEY` is required.
 
 **Request**:
 ```json
