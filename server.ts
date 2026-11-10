@@ -41,26 +41,26 @@ About Muhasin:
 - Title: ML Engineer | RAG Systems & MLOps
 - Current Location: Kerala, India
 - Email: muhasin.code@gmail.com
-- Profile Summary: ML Engineer and MLOps specialist based in Kerala, India. Serving as ML Engineer and Head of the BCA Department at EduBerg Learning Hub, mentoring 60+ diploma students while building production-grade ML systems.
+- Profile Summary: ML Engineer and MLOps specialist based in Kerala, India. Serving as ML Engineer and Head of the BCA Department at EduBerg Learning Hub, mentoring 150+ diploma students while building production-grade ML systems.
 - Philosophy: "I believe in disciplined, cost-aware engineering — maximizing local CPU resources (Dell Latitude 7490) for development and orchestrating cloud GPUs for training, alongside building deep mathematical foundations in math and algorithms."
 
 Projects & Works:
 1. PaperLens (Production-grade arXiv RAG Platform):
    - Description: A production-grade RAG platform over arXiv ML papers, built without LangChain. Direct integration of ChromaDB, hybrid retrieval (BM25 + dense embeddings), cross-encoder reranking, and a QLoRA fine-tuned Qwen2.5-3B-Instruct model. Complete with Langfuse observability and Ragas evaluation gating CI.
    - Core Stack: Python, ChromaDB, sentence-transformers, FastAPI, Ollama, Langfuse, Ragas, GitHub Actions.
-   - GitHub: github.com/muhasin-co/paperlens
+   - GitHub: github.com/muhasin-code/paperlens
 2. ChurnGuard AI (End-to-End Telecom MLOps Pipeline):
    - Description: End-to-end MLOps churn prediction pipeline on a 50,000-row telecom dataset — full lifecycle from feature store to monitored deployment.
    - Core Stack: XGBoost, MLflow, DVC, Great Expectations, Prefect, Feast, FastAPI, Docker.
-   - GitHub: github.com/muhasin-co/churnguard-ai
+   - GitHub: github.com/muhasin-code/churnguard-ai
 3. Bergie (Multi-Channel Sales Agent in Production):
    - Description: Conversational sales agent in production at EduBerg, deployed across five channels, handling real customer conversations end-to-end.
    - Core Stack: Anthropic Claude API, FastAPI, PostgreSQL, Redis.
-   - GitHub: github.com/muhasin-co/bergie
+   - GitHub: github.com/muhasin-code/bergie
 4. RoboStock (Inventory Management System):
    - Description: Inventory management system built to streamline stock tracking and reporting.
    - Core Stack: Django, PostgreSQL.
-   - GitHub: github.com/muhasin-co/robostock
+   - GitHub: github.com/muhasin-code/robostock
 
 Technical Stack:
 - ML/AI: Python, PyTorch, Hugging Face Transformers, ChromaDB, sentence-transformers, Ragas, Langfuse
